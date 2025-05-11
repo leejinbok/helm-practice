@@ -1,0 +1,19 @@
+#i am a YAML comment, I will remain in YAML
+{{- /* I am a GO COMMENT, I WILL NOT remain */}}
+{{- /* <function name> <arg1> <arg2> ...*/}}
+test: {{ lower .Values.test | replace " " "-" }}
+labels:
+  {{- /* the app label comes from release */}}
+  app: {{ .Release.Name }}
+  {{- /* The chart label comes from chart info*/}}
+  chart: {{ .Chart.Name }}
+  {{- if eq .Values.environment "production" }}
+  environment : production
+  build: stable
+  public-ingress: true
+  {{- else }}
+  environment: dev
+  build: stable
+  public-ingress: false
+  {{- end }}
+  
