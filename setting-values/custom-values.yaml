@@ -1,0 +1,12 @@
+#1. set our own wordpress username
+#2. set our own wordpress password
+#3. Increase replica count to 3
+
+wordpressUsername: jinbok
+existingSecret: custom-wp-credentials
+service:
+  type: NodePort
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 10
